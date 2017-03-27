@@ -1,7 +1,7 @@
 'use strict';
-let fs = require("fs");
-let request  = require("request");
-let qs  = require("querystring");
+const fs = require("fs");
+const fetch = require('isomorphic-fetch');
+const qs  = require("querystring");
 /**
  * 工具类用于生成rop请求和一些常用于处理功能
  */
@@ -215,6 +215,15 @@ RopUtils.prototype.doPost=async function(requestJson,ignoreSign,headerJson,isMul
     }
     var p=async ()=>{
         return new Promise((resolve, reject) =>{
+            fetch(this.services_url, {
+                method: 'POST',
+                headers:createHeaderJson,
+                body: content
+            })  .then( response => response.json())
+                .then(
+                    json =>{resolve(json);}
+                ).catch((e)=>{reject(e);});
+            /**
             request({
                     method: 'POST',
                     preambleCRLF: true,
@@ -229,7 +238,7 @@ RopUtils.prototype.doPost=async function(requestJson,ignoreSign,headerJson,isMul
                         reject(error);
                     }
                 }
-            );
+            );*/
         });
     };
     let t =await p();

@@ -32,6 +32,6 @@
     "babel-preset-stage-1": "6.x.x"
   },
   "dependencies": {
-    "request": "^2.78.0"
+    "isomorphic-fetch": "^2.2.1"
   }
 }
