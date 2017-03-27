@@ -222,24 +222,10 @@ RopUtils.prototype.doPost=async function(requestJson,ignoreSign,headerJson,isMul
             })  .then( response => response.json())
                 .then(
                     json =>{resolve(json);}
-                ).catch((e)=>{reject(e);});
-            /**
-            request({
-                    method: 'POST',
-                    preambleCRLF: true,
-                    postambleCRLF: true,
-                    uri: this.services_url,
-                    headers:createHeaderJson,
-                    body:content
-                },function(error,response,body){
-                    if (!error && response.statusCode == 200) {
-                        resolve(body);
-                    }else{
-                        reject(error);
-                    }
-                }
-            );*/
-        });
+                ).catch(
+                    (e)=>{reject(e);}
+                );
+          });
     };
     let t =await p();
     return t;
@@ -252,17 +238,17 @@ RopUtils.prototype.doPost=async function(requestJson,ignoreSign,headerJson,isMul
  * @return string 返回请求结果
  */
 RopUtils.prototype.doPostByObj=async function(requestObj){
-    let RichServiceRequest=require("../mode/richservicerequest.js");
+    let {RichServiceRequest} =require("../index");
     //查看继承关系
-    //if(typeof(requestObj)=='object'&&requestObj instanceof RichServiceRequest){
+    if(typeof(requestObj)=='object'&&requestObj instanceof RichServiceRequest){
         if(requestObj.validate()){
             let headerJson=this.getHeader(requestObj.getVersion(),requestObj.getMethod());
             let requestJson=requestObj.getObject2Json();
             return await this.doPost(requestJson, requestObj.getIgnoreSign(),headerJson,requestObj.isMultipart);
         }
-    //}else{
-    //    throw new Error("requestObj is not a RichServiceRequest obj");
-    //}
+    }else{
+        throw new Error("requestObj is not a RichServiceRequest obj");
+    }
 };
 
 module.exports = RopUtils;

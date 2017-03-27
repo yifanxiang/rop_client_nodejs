@@ -1,5 +1,5 @@
 'use strict';
-let {RichServiceRequest} =require("../../src/index");
+let {RichServiceRequest} =require("../../lib/index");
 /**
  * Created by yfx on 2016-07-26.
  */
