@@ -6,11 +6,11 @@ const clientInfo ={
     //dev
 
     //sandbox
-    services_url:'http://xxxx.xxxx.xxxx.com/services',
+    services_url:'http://localhost:8091/services',
     //app_key对应从服务商申请到的appkey
-    app_key:'17xxxxb090exxxxxx',
+    app_key:'e5fed7488fb65b1f',
     //appkey对应的密钥,客户使用,不能公开
-    app_secret:'dd8fxxx8417xxxx90e5f5244764xxxxx'
+    app_secret:'b54b0c77e5fed7488fb65b1f647df94c'
 
     //production
 

@@ -245,15 +245,15 @@ RopUtils.prototype.doPost=async function(requestJson,ignoreSign,headerJson,isMul
 RopUtils.prototype.doPostByObj=async function(requestObj){
     let RichServiceRequest=require("../mode/richservicerequest.js");
     //查看继承关系
-    if(typeof(requestObj)=='object'&&requestObj instanceof RichServiceRequest){
+    //if(typeof(requestObj)=='object'&&requestObj instanceof RichServiceRequest){
         if(requestObj.validate()){
             let headerJson=this.getHeader(requestObj.getVersion(),requestObj.getMethod());
             let requestJson=requestObj.getObject2Json();
             return await this.doPost(requestJson, requestObj.getIgnoreSign(),headerJson,requestObj.isMultipart);
         }
-    }else{
-        throw new Error("requestObj is not a RichServiceRequest obj");
-    }
+    //}else{
+    //    throw new Error("requestObj is not a RichServiceRequest obj");
+    //}
 };
 
 module.exports = RopUtils;
