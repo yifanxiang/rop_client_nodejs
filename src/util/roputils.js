@@ -2,6 +2,8 @@
 const fs = require("fs");
 const fetch = require('isomorphic-fetch');
 const qs  = require("querystring");
+const shaUtils=require("./shautils");
+const {RichServiceRequest} =require("../index");
 /**
  * 工具类用于生成rop请求和一些常用于处理功能
  */
@@ -78,7 +80,7 @@ RopUtils.prototype.getExtInfoJson=function(){
  * 返回拼接的字符串
  * */
 RopUtils.prototype.contactValues=function(values,ignoreParamNames=null,isMultipart=false){
-    let UploadFile = require("../mode/uploadfile");
+    const {UploadFile} =require("../index");
     let contactStr='';
     if(values!=null){
         let keys=Object.keys(values).sort();
@@ -106,7 +108,7 @@ RopUtils.prototype.contactValues=function(values,ignoreParamNames=null,isMultipa
  * 对ropClient请求签名
  **/
 RopUtils.prototype.sign=function(requestJson,ignoreSign,headerJson,extInfoJson,isMultipart){
-    let shaUtils=require("./shautils");
+    const shaUtils=require("./shautils");
     if(headerJson==null||!this.app_secret){
         throw new Error("请求头或客户端secret为空");
     }
@@ -173,7 +175,7 @@ RopUtils.prototype.createHeaderJson=function(headerJson,extInfoJson,sign,isMulti
  * @return string
  */
 RopUtils.prototype.buildFormData=function(paramJson){
-    let UploadFile = require("../mode/uploadfile");
+    const {UploadFile} =require("../index");
     let contactStr='';
     if(paramJson!=null){
         for(let key in paramJson){
@@ -238,7 +240,7 @@ RopUtils.prototype.doPost=async function(requestJson,ignoreSign,headerJson,isMul
  * @return string 返回请求结果
  */
 RopUtils.prototype.doPostByObj=async function(requestObj){
-    let {RichServiceRequest} =require("../index");
+    const {RichServiceRequest} =require("../index");
     //查看继承关系
     if(typeof(requestObj)=='object'&&requestObj instanceof RichServiceRequest){
         if(requestObj.validate()){

@@ -1,9 +1,9 @@
 /**
  * Created by yfx on 2016-11-18.
  */
-const {RichServiceRequest,RopUtils,UploadFile} =require("../../lib/index");
-const clientInfo = require("../cfg/clientinfo");
+const {RopUtils,UploadFile} =require("../../lib/index");
 const PingRequest = require("../mode/pingrequest");
+const clientInfo =require("../cfg/clientinfo");
 
 let ropUtils=new RopUtils(clientInfo.services_url,clientInfo.app_key,clientInfo.app_secret);
 

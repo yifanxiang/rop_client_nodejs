@@ -1,5 +1,6 @@
 'use strict';
-let  shaUtils = require("../util/shautils");
+const shaUtils = require("../util/shautils");
+const UploadFile = require("./uploadfile");
 /**
  * Created by yfx
  * 使用function这种最原始的方法输出,其它的如()=>{}这种和exports default这种都不能支持将多个class最终放入到一个js中使用，
@@ -19,7 +20,6 @@ RichServiceRequest.prototype.getMethod=function(){
 };
 
 RichServiceRequest.prototype.getObject2Json=function(){
-    let UploadFile = require("./uploadfile");
     let resultJson={};
     for(let k in this){
         let v=this[k];

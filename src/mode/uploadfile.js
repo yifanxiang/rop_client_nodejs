@@ -1,6 +1,6 @@
 'use strict';
-let fs = require("fs");
-let RopUtil =  require("../util/roputils.js");
+const fs = require("fs");
+const RopUtil =  require("../util/roputils.js");
 /**
  * Created by yfx on 2016-07-26.
  * 上传的文件对象

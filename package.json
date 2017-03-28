@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "babel --presets es2015,stage-1 --plugins transform-runtime src/ --out-dir lib/ --source-maps",
-    "compile_test": "babel --presets es2015,stage-1 --plugins transform-runtime test/ --out-dir lib_test/ --source-maps"
+    "compile": "babel src/ --out-dir lib/ --source-maps",
+    "compile_test": "babel test/ --out-dir lib_test/ --source-maps"
   },
   "repository": {
     "type": "git",

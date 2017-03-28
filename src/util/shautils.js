@@ -1,7 +1,7 @@
 'use strict';
-let crypto = require("crypto");
-let fs = require("fs");
-let RopUtils = require("./roputils.js");
+const crypto = require("crypto");
+const fs = require("fs");
+const RopUtils = require("./roputils.js");
 /**
  * Created by yfx on 2016-07-26.
  * 工具类用于生成sha和md5值
