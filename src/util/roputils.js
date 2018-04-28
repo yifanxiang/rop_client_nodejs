@@ -15,7 +15,7 @@ function RopUtils(services_url,app_key,app_secret){
     this.cv='1.0.0';
 }
 
-//初始化文件记录='utf8'
+//初始化文件记录
 RopUtils.prototype.getFileContent=async function(filePath,encodeing){
     var p=()=>{
         return new Promise((resolve, reject) =>{
@@ -145,10 +145,6 @@ RopUtils.prototype.encryptExtInfo=(extInfoJson)=>{
  * 取得请求头str，注意\r\n \001这种有转意的需用""符，''符号php部份函数不支持
  * */
 RopUtils.prototype.createHeaderJson=function(headerJson,extInfoJson,sign,isMultipart){
-    let contentType="application/x-www-form-urlencoded; charset=UTF-8";
-    if(isMultipart){
-        contentType="multipart/form-data; boundary="+this.boundary;
-    }
     let contactJson={};
     for(let key in headerJson){
         let val=headerJson[key];
@@ -160,7 +156,6 @@ RopUtils.prototype.createHeaderJson=function(headerJson,extInfoJson,sign,isMulti
     contactJson['sign']=sign;
     //其它信息
     contactJson['user-agent']="nodejs";
-    contactJson['Content-type']=contentType;
     contactJson['accept']='text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2';
     contactJson['connection']='keep-alive';
     return contactJson;
@@ -177,27 +172,32 @@ RopUtils.prototype.createHeaderJson=function(headerJson,extInfoJson,sign,isMulti
  */
 RopUtils.prototype.buildFormData=function(paramJson){
     const {UploadFile} =require("../index");
-    let contactStr='';
+    const FormData = require('form-data');
+    //let contactStr='';
+    let formData = new FormData();
     if(paramJson!=null){
         for(let key in paramJson){
             let val=paramJson[key];
             let fileFlag=(val instanceof UploadFile);
-            contactStr+="--"+this.boundary+"\r\n";
-            contactStr+="Content-Disposition: form-data; name=\""+key+"\"\r\n";
-            contactStr+="\r\n";
+            //contactStr+="--"+this.boundary+"\r\n";
+            //contactStr+="Content-Disposition: form-data; name=\""+key+"\"\r\n";
+            //contactStr+="\r\n";
             //参数处理
             if(fileFlag){
                 //是文件体
-                contactStr+=val.uploadStr+"\r\n";
+                //contactStr+=val.uploadStr+"\r\n";
+                formData.append(key,val.uploadStr);
             }else{
-                contactStr+=val+"\r\n";
+                //contactStr+=val+"\r\n";
+                formData.append(key,val);
             }
         }
-        if(contactStr!=""){
-            contactStr+="--"+this.boundary+"\r\n";
-        }
+        //if(contactStr!=""){
+            //contactStr+="--"+this.boundary+"\r\n";
+        //}
     }
-    return contactStr;
+    //return contactStr;
+    return formData;
 };
 
 
@@ -210,12 +210,14 @@ RopUtils.prototype.doPost=async function(requestJson,ignoreSign,headerJson,isMul
     let sign=this.sign(requestJson, ignoreSign, headerJson, extInfoJson,isMultipart);
     let createHeaderJson=this.createHeaderJson(headerJson, extInfoJson, sign,isMultipart);
     let content="";
-    if(isMultipart){
-        content=this.buildFormData(requestJson);
-        createHeaderJson["Content-Length"]=content.length;
-    }else{
-        content=qs.stringify(requestJson);
-    }
+    content=this.buildFormData(requestJson);
+    //if(isMultipart){
+        //content=this.buildFormData(requestJson);
+        //createHeaderJson["Content-Length"]=content.length;
+    //}else{
+        //content=qs.stringify(requestJson);
+    //}
+    //console.log(content);
     var p=async ()=>{
         return new Promise((resolve, reject) =>{
             fetch(this.services_url, {

@@ -1,6 +1,6 @@
 {
   "name": "rop_client",
-  "version": "0.1.10",
+  "version": "0.1.14",
   "description": "rop的nodejs客户端",
   "main": "lib/index.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "babel-preset-stage-1": "^6.0.0"
   },
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1"
+    "isomorphic-fetch": "^2.2.1",
+    "form-data": "^2.*.*"
   }
 }

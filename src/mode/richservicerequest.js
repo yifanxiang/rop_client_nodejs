@@ -24,7 +24,7 @@ RichServiceRequest.prototype.getObject2Json=function(){
     for(let k in this){
         let v=this[k];
         if(v instanceof UploadFile){
-            this.isMultipart=true;
+            //this.isMultipart=true;
             if(v.content==null){
                 continue;
             }
