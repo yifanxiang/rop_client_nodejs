@@ -193,7 +193,7 @@ RopUtils.prototype.buildFormData=function(paramJson){
                 contactStr+=val+"\r\n";
             }
         }
-        if($contactStr!=""){
+        if(contactStr!=""){
             contactStr+="--"+this.boundary+"\r\n";
         }
     }

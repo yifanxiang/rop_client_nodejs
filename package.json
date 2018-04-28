@@ -1,6 +1,6 @@
 {
   "name": "rop_client",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "description": "rop的nodejs客户端",
   "main": "lib/index.js",
   "scripts": {
@@ -24,12 +24,12 @@
   },
   "homepage": "https://github.com/yifanxiang/rop_client_nodejs#readme",
   "devDependencies": {
-    "babel": "^6.5.2",
-    "babel-cli": "6.x.x",
-    "babel-core": "6.x.x",
-    "babel-plugin-transform-runtime": "6.x.x",
-    "babel-preset-es2015": "6.x.x",
-    "babel-preset-stage-1": "6.x.x"
+    "babel": "^6.0.0",
+    "babel-cli": "^6.0.0",
+    "babel-core": "^6.0.0",
+    "babel-plugin-transform-runtime": "^6.0.0",
+    "babel-preset-es2015": "^6.0.0",
+    "babel-preset-stage-1": "^6.0.0"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1"
