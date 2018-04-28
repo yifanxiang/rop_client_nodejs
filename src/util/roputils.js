@@ -15,8 +15,8 @@ function RopUtils(services_url,app_key,app_secret){
     this.cv='1.0.0';
 }
 
-//初始化文件记录
-RopUtils.prototype.getFileContent=async function(filePath,encodeing='utf8'){
+//初始化文件记录='utf8'
+RopUtils.prototype.getFileContent=async function(filePath,encodeing){
     var p=()=>{
         return new Promise((resolve, reject) =>{
             fs.readFile(filePath,encodeing,function(err,byteData){

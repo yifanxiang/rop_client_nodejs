@@ -25,8 +25,9 @@ RichServiceRequest.prototype.getObject2Json=function(){
         let v=this[k];
         if(v instanceof UploadFile){
             this.isMultipart=true;
-            var b = new Buffer('JavaScript');
-            var s = b.toString('base64');
+            if(v.content==null){
+                continue;
+            }
             v.uploadStr=shaUtils.getBase64Encode(v.fileName)+"@"+shaUtils.getBase64Encode(v.content);
             v.uploadStr=v.uploadStr.replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
             v.content=null;

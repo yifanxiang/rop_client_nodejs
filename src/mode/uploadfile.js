@@ -11,6 +11,7 @@ function UploadFile(){
 UploadFile.prototype.init=async function(filePath){
     //组建请求参数
     let ropUtil=new RopUtil();
+    //如果读取是图片,则编码不设置
     this.content=await ropUtil.getFileContent(filePath);
     this.fileName=ropUtil.getfileName(filePath);
 };
