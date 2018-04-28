@@ -25,7 +25,7 @@ const ShaUtils ={
     },
 
     getBase64Encode:function(str){
-        if(str==null||str.trim()==''){return "";}
+        if(str===null||str===undefined){return "";}
         return new Buffer(str).toString('base64');
     },
 
