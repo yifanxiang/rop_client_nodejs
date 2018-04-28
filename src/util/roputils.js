@@ -90,15 +90,16 @@ RopUtils.prototype.contactValues=function(values,ignoreParamNames=null,isMultipa
                 continue;
             }
             let val=values[key];
-            if(val!=undefined&&val!=null){
-                if(val instanceof UploadFile){
-                    contactStr+=key+""+val.uploadStr;
-                }else{
-                    contactStr+=key+""+val;
+            if(val!=undefined&&val!=null) {
+                if (val instanceof UploadFile) {
+                    contactStr += key + "" + val.uploadStr;
+                } else {
+                    contactStr += key + "" + val;
                 }
-            }else{
-                contactStr+=val;
             }
+            //}else{
+                //   contactStr+=val;
+            //}
         }
     }
     return contactStr;
